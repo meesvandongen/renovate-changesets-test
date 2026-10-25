@@ -2,7 +2,7 @@
   "name": "@test/lib-f",
   "version": "1.0.0",
   "dependencies": {
-    "ms": "^1.0.0",
-    "semver": "^6.0.0"
+    "ms": "^2.0.0",
+    "semver": "^7.0.0"
   }
 }
