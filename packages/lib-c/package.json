@@ -1,0 +1,7 @@
+{
+  "name": "@test/lib-c",
+  "version": "1.0.0",
+  "peerDependencies": {
+    "vue": "^2.0.0"
+  }
+}

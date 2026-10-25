@@ -1,0 +1,7 @@
+{
+  "name": "@test/dev-only",
+  "version": "1.0.0",
+  "devDependencies": {
+    "semver": "^6.0.0"
+  }
+}

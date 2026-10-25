@@ -1,0 +1,39 @@
+name: Renovate
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: Branch of meesvandongen/renovate to run
+        default: claude/beautiful-archimedes-4eiuqu
+
+jobs:
+  renovate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: meesvandongen/renovate
+          ref: ${{ inputs.ref }}
+          path: renovate
+
+      - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: renovate/package.json
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - run: pnpm install --frozen-lockfile
+        working-directory: renovate
+
+      - run: node lib/renovate.ts
+        working-directory: renovate
+        env:
+          RENOVATE_PLATFORM: github
+          RENOVATE_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
+          RENOVATE_REPOSITORIES: ${{ github.repository }}
+          RENOVATE_ONBOARDING: 'false'
+          RENOVATE_REQUIRE_CONFIG: required
+          LOG_LEVEL: debug
